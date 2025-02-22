@@ -23,7 +23,7 @@ export default function HowItWorksPage() {
   ];
 
   return (
-    <section id="how-it-works" className="min-h-screen flex flex-col items-center justify-center py-16 bg-gray-50 text-center">
+    <section id="how-it-works" className="min-h-screen flex flex-col items-center justify-center py-16 bg-red-900 text-center">
       <div className="max-w-5xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-gray-900">How It Works</h2>
         <p className="text-gray-600 mt-2">

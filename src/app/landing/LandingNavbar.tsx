@@ -1,7 +1,23 @@
 "use client";
+import { useState } from "react";
 import Link from "next/link";
 
 const LandingNavbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Smooth scroll function
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
+    e.preventDefault();
+    const targetElement = document.getElementById(targetId);
+    if (targetElement) {
+      window.scrollTo({
+        top: targetElement.offsetTop - 80, // Adjust for navbar height
+        behavior: "smooth",
+      });
+    }
+    setIsOpen(false); // Close mobile menu after clicking a link
+  };
+
   return (
     <nav className="fixed top-0 left-0 w-full bg-white shadow-lg py-4 px-8 flex justify-between items-center z-50">
       {/* Logo */}
@@ -11,15 +27,18 @@ const LandingNavbar = () => {
 
       {/* Navbar Links */}
       <div className="hidden md:flex space-x-8 text-lg font-medium">
-        <Link href="/#features" className="text-gray-700 hover:text-blue-600 transition">
+        <a href="#features" onClick={(e) => handleScroll(e, "features")} className="text-gray-700 hover:text-blue-600 transition">
           Features
-        </Link>
-        <Link href="/#how-it-works" className="text-gray-700 hover:text-blue-600 transition">
+        </a>
+        <a href="#how-it-works" onClick={(e) => handleScroll(e, "how-it-works")} className="text-gray-700 hover:text-blue-600 transition">
           How It Works
-        </Link>
-        <Link href="/#testimonials" className="text-gray-700 hover:text-blue-600 transition">
+        </a>
+        <a href="#testimonials" onClick={(e) => handleScroll(e, "testimonials")} className="text-gray-700 hover:text-blue-600 transition">
           Testimonials
-        </Link>
+        </a>
+        <a href="#cta" onClick={(e) => handleScroll(e, "cta")} className="text-gray-700 hover:text-blue-600 transition">
+          Get Started
+        </a>
       </div>
 
       {/* Login / Sign Up Buttons */}
