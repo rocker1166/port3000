@@ -1,54 +1,94 @@
-//src/app/landing/testimonials/page.tsx
+//src>app>landing>testimonials>page.tsx
 
-import { FaStar, FaQuoteLeft } from "react-icons/fa";
+"use client";
 
-export default function TestimonialsPage() {
-  const testimonials = [
+import { useState } from "react";
+import { FaChevronDown } from "react-icons/fa";
+
+export default function FAQPage() {
+  const faqs = [
     {
-      name: "Emily Johnson",
-      feedback:
-        "StudyAI completely changed the way I learn! The AI recommendations are spot-on.",
-      rating: 5,
+      question: "What is StudyAI?",
+      answer:
+        "StudyAI is a revolutionary new platform that allows you to upload your course materials and create interactive study sets. You can study with an AI tutor, create flashcards, generate notes, take practice tests, and more.",
     },
     {
-      name: "Michael Smith",
-      feedback:
-        "This platform made my studies so much more efficient. Highly recommended!",
-      rating: 4,
+      question: "Can I upload my whole class lecture to StudyAI?",
+      answer:
+        "Yes, you can upload full lectures, and StudyAI will process them into study materials.",
     },
     {
-      name: "Sophia Lee",
-      feedback:
-        "The personalized study plans helped me stay focused and achieve my goals.",
-      rating: 5,
+      question: "What types of course material can I upload?",
+      answer:
+        "You can upload PDFs, Word documents, PowerPoint presentations, and even handwritten notes.",
+    },
+    {
+      question:
+        "Does my course material automatically convert into other features?",
+      answer:
+        "Yes, AI will process your material to generate flashcards, notes, and quizzes.",
+    },
+    {
+      question: "How do I upload my material?",
+      answer:
+        "Simply drag and drop your files into the upload section, and AI will handle the rest.",
+    },
+    {
+      question: "How does the AI work?",
+      answer:
+        "Our AI analyzes your material, extracts key points, and creates personalized study aids.",
+    },
+    {
+      question: "Who is DAll.e?",
+      answer:
+        "DAll.e is our AI-powered tutor that helps you with your studies in real-time.",
     },
   ];
 
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
   return (
-    <section id="testimonials" className="py-16 bg-gray-50 text-center">
+    <section className="py-16 bg-dark-tech text-white relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-gray-900">What Our Users Say</h2>
-        <p className="text-gray-600 mt-2">
-          See how StudyAI has helped students improve their learning experience.
+        <h2 className="text-5xl font-bold text-center text-blue-400 mb-8">
+          Common Questions
+        </h2>
+        <p className="text-center text-gray-300 mt-2 mb-10">
+          Find answers to frequently asked questions about StudyFetch.
         </p>
 
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <div key={index} className="bg-white shadow-md p-6 rounded-lg">
-              <FaQuoteLeft className="text-4xl text-blue-500 mb-3" />
-              <p className="text-gray-700">{testimonial.feedback}</p>
-              <div className="mt-4 flex justify-center">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <FaStar key={i} className="text-yellow-500" />
-                ))}
-              </div>
-              <h3 className="mt-2 text-lg font-semibold text-gray-900">
-                {testimonial.name}
-              </h3>
+        <div className="mt-10 space-y-4">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-gradient-to-r from-cyan-900 to-pink-900
+ p-5 rounded-lg shadow-md transition-all duration-300 hover:bg-gray-700 hover:shadow-xl"
+            >
+              <button
+                className="flex justify-between items-center w-full text-xl font-semibold text-white"
+                onClick={() => toggleFAQ(index)}
+              >
+                {faq.question}
+                <FaChevronDown
+                  className={`transition-transform transform ${
+                    openIndex === index ? "rotate-180" : ""
+                  }`}
+                />
+              </button>
+              {openIndex === index && (
+                <p className="text-white mt-2">{faq.answer}</p>
+              )}
             </div>
           ))}
         </div>
       </div>
+
+      {/* Glowing background effect */}
+      <div className="absolute top-0 left-0 w-full h-full bg-neon-glow transition-all duration-300 z-[-1]" />
     </section>
   );
 }
