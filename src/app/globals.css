@@ -1,4 +1,477 @@
+/* ✅ Move this to the top */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Anton&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* 🌟 Neon Glow for Icons */
+.icon-glow {
+  filter: drop-shadow(0px 0px 15px rgba(0, 255, 255, 0.9));
+}
+
+/* 🔥 Background Glow Effect */
+.bg-neon-glow {
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.4) 10%,
+    transparent 80%
+  );
+}
+
+/* ⚡ Glitch Effect for Title */
+.glitch {
+  position: relative;
+  text-shadow: 2px 2px 10px rgba(0, 255, 255, 0.8),
+    -2px -2px 10px rgba(255, 0, 255, 0.8);
+  animation: glitch 1.5s infinite alternate;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 2px 10px rgba(0, 255, 255, 0.8),
+      -2px -2px 10px rgba(255, 0, 255, 0.8);
+  }
+  100% {
+    text-shadow: -2px -2px 10px rgba(0, 255, 255, 0.8),
+      2px 2px 10px rgba(255, 0, 255, 0.8);
+  }
+}
+
+/* 🌊 Background Wave Animation */
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.bg-wave {
+  background-image: url("/wave.svg"); /* Ensure this file exists in public/ */
+  animation: wave 5s infinite alternate ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+/* 🚀 Holographic Grid Background */
+.bg-holo-grid {
+  background-image: url("/holo-grid.svg"); /* Ensure this file exists in public/ */
+  opacity: 0.6; /* Increased opacity for better visibility */
+  background-blend-mode: overlay;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* 🔥 Hover Neon Shadow */
+.hover\:shadow-neon:hover {
+  box-shadow: 0px 0px 25px rgba(0, 255, 255, 0.9);
+}
+
+/* 🎭 Floating Hover Effect */
+.card-float {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+.card-float:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+  box-shadow: 0px 0px 20px rgba(255, 0, 150, 0.7);
+}
+.card-float:active {
+  transform: scale(0.95);
+}
+
+/* 💎 Neon Glow Borders */
+.neon-border {
+  border: 2px solid rgba(255, 0, 150, 0.7);
+  box-shadow: 0px 0px 10px rgba(255, 0, 150, 0.5);
+}
+
+/* 🎮 Arcade Font */
+.arcade-title {
+  font-family: "Press Start 2P", cursive;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.8);
+}
+
+/* ✨ Step-by-Step Animation (Merged Slide-In and Fade-Slide) */
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animated-step,
+.step {
+  opacity: 0;
+  animation: slideIn 0.8s ease-out forwards;
+}
+.animated-step:nth-child(1),
+.step:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.animated-step:nth-child(2),
+.step:nth-child(2) {
+  animation-delay: 0.6s;
+}
+.animated-step:nth-child(3),
+.step:nth-child(3) {
+  animation-delay: 0.9s;
+}
+
+/* ⚡ Glassmorphism Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease-in-out;
+}
+
+/* ⚡ Elegant Neon Glow */
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.7);
+}
+
+/* ⚡ Smooth Appear Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+.fade-in:nth-child(1) {
+  animation-delay: 0.3s;
+}
+.fade-in:nth-child(2) {
+  animation-delay: 0.5s;
+}
+.fade-in:nth-child(3) {
+  animation-delay: 0.7s;
+}
+
+/* ⚡ Subtle Click Effect */
+.card-hover:active {
+  transform: scale(0.98);
+}
+
+/* 🌌 Dark Futuristic Background */
+.bg-dark-tech {
+  background: radial-gradient(circle, rgba(10, 10, 20, 0.9) 10%, #050505 100%);
+  color: #ffffff;
+}
+
+/* 🌀 Animated Neon Title */
+.neon-title {
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 20px rgba(0, 255, 255, 0.9);
+}
+
+/* 🌟 Glowing Icons */
+.icon-glow {
+  filter: drop-shadow(0px 0px 20px rgba(0, 255, 255, 0.8));
+}
+
+/* 🚀 Glassmorphism Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+.glass-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0px 0px 30px rgba(0, 255, 255, 0.7);
+}
+
+/* 🌀 Glowing Timeline Line */
+.bg-glowing-line {
+  background: linear-gradient(to bottom, rgba(0, 255, 255, 0.9), transparent);
+}
+
+/* 🔥 Futuristic Grid Background */
+.bg-futuristic-grid {
+  background: url("/futuristic-grid.svg");
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  animation: grid-move 10s linear infinite;
+}
+
+@keyframes grid-move {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
+/* ✅ Dark Futuristic Background */
+.bg-dark-tech {
+  background: radial-gradient(circle, rgba(10, 10, 20, 0.95) 10%, #050505 100%);
+  color: #ffffff;
+}
+
+/* 🚀 Futuristic Grid Background */
+.bg-futuristic-grid {
+  background: url("/futuristic-grid.svg"); /* Ensure this file exists */
+  opacity: 0.3;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  animation: grid-move 10s linear infinite;
+}
+@keyframes grid-move {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(20px);
+  }
+}
+
+/* 🌟 Glowing Star Effect */
+.star-glow {
+  filter: drop-shadow(0px 0px 10px rgba(255, 200, 0, 0.8));
+}
+
+/* 🎭 Neon Title */
+.neon-title {
+  font-family: "Orbitron", sans-serif;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 20px rgba(0, 255, 255, 0.9);
+}
+
+/* 🌀 Neon Hover Effect */
+.hover\:shadow-neon:hover {
+  box-shadow: 0px 0px 25px rgba(0, 255, 255, 0.9);
+}
+
+/* 🚀 Glassmorphism Card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+.glass-card:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0px 0px 30px rgba(0, 255, 255, 0.7);
+}
+
+/* ⚡ Smooth Appear Animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-in {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+/* Hide default scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Ensure the FAQ button and icon are above other layers */
+.faq-button {
+  position: relative;
+  z-index: 10;
+}
+
+/* Additional fix for icons to ensure they are clickable */
+.faq-icon {
+  z-index: 10; /* Ensures the icon is above any background layers */
+}
+/* 🌟 Glowing Background Effect */
+.bg-neon-glow {
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.2) 10%,
+    transparent 80%
+  );
+  transition: background 0.5s ease-in-out;
+}
+
+.bg-neon-glow:hover {
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.5) 10%,
+    transparent 80%
+  );
+}
+
+/* 🌀 Hover Neon Effect */
+section:hover .bg-neon-glow {
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.4) 10%,
+    transparent 80%
+  );
+}
+/* 🌟 Neon Glow for Icons */
+.icon-glow {
+  filter: drop-shadow(0px 0px 15px rgba(0, 255, 255, 0.9));
+}
+
+/* 🔥 Background Glow Effect */
+.bg-neon-glow {
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.4) 10%,
+    transparent 80%
+  );
+}
+
+/* ⚡ Glitch Effect for Title */
+.glitch {
+  position: relative;
+  text-shadow: 2px 2px 10px rgba(0, 255, 255, 0.8),
+    -2px -2px 10px rgba(255, 0, 255, 0.8);
+  animation: glitch 1.5s infinite alternate;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 2px 10px rgba(0, 255, 255, 0.8),
+      -2px -2px 10px rgba(255, 0, 255, 0.8);
+  }
+  100% {
+    text-shadow: -2px -2px 10px rgba(0, 255, 255, 0.8),
+      2px 2px 10px rgba(255, 0, 255, 0.8);
+  }
+}
+
+/* 🌊 Background Wave Animation */
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.bg-wave {
+  background-image: url("/wave.svg");
+  animation: wave 5s infinite alternate ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+/* 🚀 Holographic Grid Background */
+.bg-holo-grid {
+  background-image: url("/holo-grid.svg");
+  opacity: 0.6;
+  background-blend-mode: overlay;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* ⚡ Glitch Effect for Title */
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 2px 10px rgba(0, 255, 255, 0.8),
+      -2px -2px 10px rgba(255, 0, 255, 0.8);
+  }
+  100% {
+    text-shadow: -2px -2px 10px rgba(0, 255, 255, 0.8),
+      2px 2px 10px rgba(255, 0, 255, 0.8);
+  }
+}
+
+/* 🌊 Background Wave Animation */
+@keyframes wave {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.bg-wave {
+  background-image: url("/wave.svg"); /* Ensure this file exists in public/ */
+  animation: wave 5s infinite alternate ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+
+/* 🌀 Hover Neon Effect */
+section:hover .bg-neon-glow {
+  background: radial-gradient(
+    circle,
+    rgba(0, 255, 255, 0.4) 10%,
+    transparent 80%
+  );
+}
+
+/* Hide scrollbar but allow scrolling */
+body {
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
