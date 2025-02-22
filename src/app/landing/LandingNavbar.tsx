@@ -1,9 +1,8 @@
-//src>app>landing>LandingNavbar.tsx
-
 "use client";
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react"; // Import icons for the menu
 
 const LandingNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +16,11 @@ const LandingNavbar = () => {
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
       window.scrollTo({
-        top: targetElement.offsetTop - 80, // Adjust for navbar height
+        top: targetElement.offsetTop - 80,
         behavior: "smooth",
       });
     }
-    setIsOpen(false); // Close mobile menu after clicking a link
+    setIsOpen(false);
   };
 
   return (
@@ -31,48 +30,32 @@ const LandingNavbar = () => {
         <Link href="/">StudyAI</Link>
       </div>
 
-      {/* Navbar Links */}
+      {/* Hamburger Menu Button (Visible on Mobile) */}
+      <button
+        className="md:hidden text-white"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        {isOpen ? <X size={28} /> : <Menu size={28} />}
+      </button>
+
+      {/* Navbar Links - Desktop */}
       <div className="hidden md:flex space-x-8 text-lg font-medium">
-        <motion.a
-          href="#features"
-          onClick={(e) => handleScroll(e, "features")}
-          className="text-white relative group hover:text-blue-400 transition-all duration-300"
-          whileHover={{ scale: 1.1 }}
-        >
-          Features
-          <motion.div className="absolute bottom-0 left-0 w-0 h-1 bg-blue-400 transition-all duration-300 group-hover:w-full"></motion.div>
-        </motion.a>
-        <motion.a
-          href="#how-it-works"
-          onClick={(e) => handleScroll(e, "how-it-works")}
-          className="text-white relative group hover:text-blue-400 transition-all duration-300"
-          whileHover={{ scale: 1.1 }}
-        >
-          How It Works
-          <motion.div className="absolute bottom-0 left-0 w-0 h-1 bg-blue-400 transition-all duration-300 group-hover:w-full"></motion.div>
-        </motion.a>
-        <motion.a
-          href="#faqs"
-          onClick={(e) => handleScroll(e, "faqs")}
-          className="text-white relative group hover:text-blue-400 transition-all duration-300"
-          whileHover={{ scale: 1.1 }}
-        >
-          FAQs
-          <motion.div className="absolute bottom-0 left-0 w-0 h-1 bg-blue-400 transition-all duration-300 group-hover:w-full"></motion.div>
-        </motion.a>
-        <motion.a
-          href="#cta"
-          onClick={(e) => handleScroll(e, "cta")}
-          className="text-white relative group hover:text-blue-400 transition-all duration-300"
-          whileHover={{ scale: 1.1 }}
-        >
-          Get Started
-          <motion.div className="absolute bottom-0 left-0 w-0 h-1 bg-blue-400 transition-all duration-300 group-hover:w-full"></motion.div>
-        </motion.a>
+        {["features", "how-it-works", "faqs", "cta"].map((item) => (
+          <motion.a
+            key={item}
+            href={`#${item}`}
+            onClick={(e) => handleScroll(e, item)}
+            className="text-white relative group hover:text-blue-400 transition-all duration-300"
+            whileHover={{ scale: 1.1 }}
+          >
+            {item.replace("-", " ").toUpperCase()}
+            <motion.div className="absolute bottom-0 left-0 w-0 h-1 bg-blue-400 transition-all duration-300 group-hover:w-full"></motion.div>
+          </motion.a>
+        ))}
       </div>
 
-      {/* Login / Sign Up Buttons */}
-      <div className="space-x-4 flex items-center">
+      {/* Login / Sign Up - Desktop */}
+      <div className="hidden md:flex space-x-4 items-center">
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
           <Link href="/login">
             <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
@@ -82,12 +65,40 @@ const LandingNavbar = () => {
         </motion.div>
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
           <Link href="/signup">
-            <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-500 transition duration-300">
+            <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
               SIGN UP
             </button>
           </Link>
         </motion.div>
       </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden absolute top-16 left-0 w-full bg-[#1f3d60] shadow-lg flex flex-col items-center space-y-6 py-6">
+          {["features", "how-it-works", "faqs", "cta"].map((item) => (
+            <a
+              key={item}
+              href={`#${item}`}
+              onClick={(e) => handleScroll(e, item)}
+              className="text-white text-lg font-medium hover:text-blue-400 transition-all duration-300"
+            >
+              {item.replace("-", " ").toUpperCase()}
+            </a>
+          ))}
+
+          {/* Login / Sign Up - Mobile */}
+          <Link href="/login">
+            <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
+              LOGIN
+            </button>
+          </Link>
+          <Link href="/signup">
+            <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
+              SIGN UP
+            </button>
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };
