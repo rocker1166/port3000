@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react"; // Import icons for the menu
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 const LandingNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,20 +57,28 @@ const LandingNavbar = () => {
 
       {/* Login / Sign Up - Desktop */}
       <div className="hidden md:flex space-x-4 items-center">
+        <SignedOut>
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-          <Link href="/login">
+          <Link href="/sign-in">
             <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
               LOGIN
             </button>
           </Link>
         </motion.div>
         <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-          <Link href="/signup">
+          <Link href="/reg-form">
             <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
               SIGN UP
             </button>
           </Link>
         </motion.div>
+        </SignedOut>
+        <SignedIn>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+          <UserButton  />
+          </motion.div>
+        </SignedIn>
+      
       </div>
 
       {/* Mobile Menu */}
@@ -87,16 +96,22 @@ const LandingNavbar = () => {
           ))}
 
           {/* Login / Sign Up - Mobile */}
-          <Link href="/login">
+          <SignedOut>
+          <Link href="/sign-in">
             <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
               LOGIN
             </button>
           </Link>
-          <Link href="/signup">
+          <Link href="/reg-form">
             <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
               SIGN UP
             </button>
           </Link>
+          </SignedOut>
+          <SignedIn>
+          <UserButton  />
+          </SignedIn>
+            
         </div>
       )}
     </nav>
