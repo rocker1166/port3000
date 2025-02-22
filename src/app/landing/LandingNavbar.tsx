@@ -52,12 +52,12 @@ const LandingNavbar = () => {
           <motion.div className="absolute bottom-0 left-0 w-0 h-1 bg-blue-400 transition-all duration-300 group-hover:w-full"></motion.div>
         </motion.a>
         <motion.a
-          href="#testimonials"
-          onClick={(e) => handleScroll(e, "testimonials")}
+          href="#faqs"
+          onClick={(e) => handleScroll(e, "faqs")}
           className="text-white relative group hover:text-blue-400 transition-all duration-300"
           whileHover={{ scale: 1.1 }}
         >
-          Testimonials
+          FAQs
           <motion.div className="absolute bottom-0 left-0 w-0 h-1 bg-blue-400 transition-all duration-300 group-hover:w-full"></motion.div>
         </motion.a>
         <motion.a
