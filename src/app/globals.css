@@ -1,6 +1,6 @@
-/* ✅ Move this to the top */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Bebas+Neue&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Anton&display=swap");
+
 
 @tailwind base;
 @tailwind components;
@@ -476,8 +476,6 @@ body::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
 }
 
-
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -533,8 +531,6 @@ body::-webkit-scrollbar {
     --chart-5: 340 75% 55%;
   }
 }
-
-
 
 @layer base {
   * {

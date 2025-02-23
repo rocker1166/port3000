@@ -1,17 +1,16 @@
-//src>app>landing>LandingNavbar.tsx
-
 "use client";
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react"; // Import icons for the menu
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-
+import { useUser, RedirectToSignIn } from "@clerk/nextjs"; // Import useUser and RedirectToSignIn
 
 const LandingNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isSignedIn } = useUser(); // Check if user is signed in
 
-  // Smooth scroll function (still works in LandingPage)
+  // Smooth scroll function
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     targetId: string
@@ -44,43 +43,49 @@ const LandingNavbar = () => {
 
       {/* Desktop Navbar Links */}
       <div className="hidden md:flex space-x-8 text-lg font-medium">
-        {["features", "how-it-works", "faqs", "cta"].map((item) => (
-          <Link
+        {["features", "how-it-works", "faqs", "get started"].map((item) => (
+          <a
             key={item}
             href={`#${item}`}
+            onClick={(e) => handleScroll(e, item)}
             className="text-white hover:text-blue-400 transition-all duration-300"
           >
             {item.replace("-", " ").toUpperCase()}
-          </Link>
+          </a>
         ))}
+
+        {/* Classroom Link - Show to everyone, but redirect to sign-in if not signed in */}
+        <Link
+          href={isSignedIn ? "/classroom" : "/sign-in"}
+          className="text-white hover:text-blue-400 transition-all duration-300"
+        >
+          CLASSROOM
+        </Link>
       </div>
 
       {/* Login / Sign Up / Classroom Buttons */}
       <div className="hidden md:flex space-x-4 items-center">
-
         <SignedOut>
-        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-          <Link href="/sign-in">
-            <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
-              LOGIN
-            </button>
-          </Link>
-        </motion.div>
-        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-          <Link href="/reg-form">
-            <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
-              SIGN UP
-            </button>
-          </Link>
-        </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+            <Link href="/sign-in">
+              <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
+                LOGIN
+              </button>
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+            <Link href="/reg-form">
+              <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
+                SIGN UP
+              </button>
+            </Link>
+          </motion.div>
         </SignedOut>
         <SignedIn>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
-          <UserButton  />
+            <UserButton />
           </motion.div>
         </SignedIn>
-      
-
       </div>
 
       {/* Mobile Menu */}
@@ -96,27 +101,22 @@ const LandingNavbar = () => {
             </Link>
           ))}
 
-
           {/* Login / Sign Up - Mobile */}
           <SignedOut>
-          <Link href="/sign-in">
-
-            <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
-              LOGIN
-            </button>
-          </Link>
-          <Link href="/reg-form">
-            <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
-              SIGN UP
-            </button>
-          </Link>
-
+            <Link href="/sign-in">
+              <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
+                LOGIN
+              </button>
+            </Link>
+            <Link href="/reg-form">
+              <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
+                SIGN UP
+              </button>
+            </Link>
           </SignedOut>
           <SignedIn>
-          <UserButton  />
+            <UserButton />
           </SignedIn>
-            
-
         </div>
       )}
     </nav>
