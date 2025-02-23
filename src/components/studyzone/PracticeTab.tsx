@@ -74,7 +74,7 @@ const PracticeTabContent = () => {
           <p className="text-zinc-300 mb-2 break-words">{question.text}</p>
 
           {question.type === 'multiple-choice' && question.options && (
-            <div className="grid grid-cols-1 gap-2">
+            <div className="grid grid-cols-1 gap-2 p-8">
               {question.options.map((option, index) => (
                 <Button
                   key={index}

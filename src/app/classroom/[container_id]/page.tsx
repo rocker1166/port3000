@@ -165,9 +165,18 @@ interface LeftSidebarProps {
 const LessonTabContent = () => (
   <Card className="bg-zinc-800 border-zinc-700">
     <CardContent className="p-6">
-      <div className="aspect-video bg-zinc-900 rounded-lg flex items-center justify-center mb-4">
+      <h1>Lesson: 3D Structure Representations</h1>
+      <div className="aspect-video my-4 bg-zinc-900 rounded-lg flex items-center justify-center mb-4">
         {/* Placeholder for Video Player */}
-        <Video className="h-12 w-12 text-zinc-400" />
+        <iframe
+          className="w-full h-full"
+          src="https://www.youtube.com/embed/Hb9QvSODBPY?si=Hiosp_T73LGJR-V9"
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
       </div>
       <h3 className="text-xl font-semibold mb-2 text-zinc-100">
         Representations of 3D structures
@@ -191,6 +200,21 @@ const LessonTabContent = () => (
           <BrainCircuit className="h-5 w-5 text-blue-400 mb-2" />
           <h4 className="font-medium mb-1 text-zinc-300">Practice</h4>
           <p className="text-xs text-zinc-400">15 questions</p>
+        </div>
+        <div className="bg-zinc-900 p-4 rounded-lg">
+          <BookOpenCheck className="h-5 w-5 text-green-400 mb-2" />
+          <h4 className="font-medium mb-1 text-zinc-300">Reading Material</h4>
+          <p className="text-xs text-zinc-400">5 articles</p>
+        </div>
+        <div className="bg-zinc-900 p-4 rounded-lg">
+          <Calculator className="h-5 w-5 text-red-400 mb-2" />
+          <h4 className="font-medium mb-1 text-zinc-300">Exercises</h4>
+          <p className="text-xs text-zinc-400">10 exercises</p>
+        </div>
+        <div className="bg-zinc-900 p-4 rounded-lg">
+          <FlaskConical className="h-5 w-5 text-pink-400 mb-2" />
+          <h4 className="font-medium mb-1 text-zinc-300">Experiments</h4>
+          <p className="text-xs text-zinc-400">3 experiments</p>
         </div>
       </div>
     </CardContent>
@@ -301,10 +325,12 @@ export default function StudyZone() {
   ];
 
   return (
-<><Navbar />
-  <div className="h-screen bg-black text-zinc-100 flex">
+<div>
+  
+  <Navbar />
+  <div className="h-screen   py-14 text-zinc-100 flex">
     {/* Sidebar (Fixed Width, Responsive) */}
-    <aside className="w-64 md:w-72 lg:w-80 bg-zinc-900 h-full p-4 flex-shrink-0">
+    <aside className="w-64 md:w-72 lg:w-80  h-full p-4 flex-shrink-0">
       <LeftSidebar progress={progress} timeSpent={timeSpent} topics={topics} formatTime={formatTime} />
     </aside>
 
@@ -364,7 +390,7 @@ export default function StudyZone() {
     </div>
     </main>
   </div>
-</>
+</div>
 
 
 

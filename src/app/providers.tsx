@@ -8,8 +8,12 @@ import { Analytics } from "@vercel/analytics/react";
 function useLocalStorage<T>(key: string, initialValue: T): [T, Dispatch<SetStateAction<T>>] {
   const [storedValue, setStoredValue] = useState<T>(() => {
     try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
+      if (typeof window !== "undefined") {
+        const item = window.localStorage.getItem(key);
+        return item ? JSON.parse(item) : initialValue;
+      } else {
+        return initialValue;
+      }
     } catch (error) {
       console.log(error);
       return initialValue;

@@ -152,17 +152,7 @@ const LeftSidebar: React.FC<LeftSidebarProps> = ({
         </div>
       </ScrollArea>
 
-      {/* Study Streak Section */}
-      <Separator className="bg-zinc-800 my-4" />
-      <div className="flex items-center gap-4 p-3 rounded-lg bg-zinc-800/50 mx-4 mb-4"> {/* Reduced padding, added mx-4 mb-4 for spacing */}
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center">
-          <GraduationCap className="h-4 w-4 text-white" />
-        </div>
-        <div className="flex-1">
-          <p className="text-sm font-medium text-zinc-300">Study Streak</p>
-          <p className="text-xs text-zinc-400">8 days • Level 5</p>
-        </div>
-      </div>
+ 
     </aside>
   );
 };
