@@ -1,35 +1,50 @@
-//src>app>components>Navbar.tsx
-
 "use client";
 import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="w-full bg-gray-900 text-white py-4 px-8 flex justify-between items-center shadow-lg border-b border-gray-700">
+    <nav className="w-full fixed top-0 bg-black/60 backdrop-blur-md text-white py-4 px-8 flex justify-between items-center shadow-lg border-b border-gray-700">
       {/* Logo */}
-      <div className="text-2xl font-bold text-blue-400 tracking-wide">
-        <Link href="/classroom">Classroom</Link>
+      <div className="text-3xl font-bold text-blue-400 tracking-wide hover:text-blue-500 transition duration-300">
+        <a
+          href="/"
+          className="text-3xl font-bold text-blue-400 tracking-wide hover:text-blue-500 transition duration-300"
+        >
+          StudyAI
+        </a>
       </div>
 
       {/* Navigation Links */}
       <div className="flex space-x-6 text-lg font-medium">
-        <Link
-          href="/classroom/home"
-          className="hover:text-blue-400 transition-all duration-300"
-        >
-          Home
-        </Link>
-        <Link
+        <a
           href="/classroom/study-materials"
-          className="hover:text-blue-400 transition-all duration-300"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-blue-400 transition-all duration-300 relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-blue-400 after:left-0 after:bottom-0 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
         >
-          Study Materials
-        </Link>
-        <Link
+          📚 Study Materials
+        </a>
+        <a
           href="/classroom/dashboard"
-          className="hover:text-blue-400 transition-all duration-300"
+          rel="noopener noreferrer"
+          className="hover:text-blue-400 transition-all duration-300 relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-blue-400 after:left-0 after:bottom-0 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
         >
-          Dashboard
+          📊 Dashboard
+        </a>
+        <a
+          href="/classroom/quizzes"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-blue-400 transition-all duration-300 relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-blue-400 after:left-0 after:bottom-0 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
+        >
+          🎯 Quizzes
+        </a>
+        <Link
+          href="/classroom/pro-ana"
+          target="_blank"
+          className="flex items-center gap-3"
+        >
+          📈 Progress & Analytics
         </Link>
       </div>
     </nav>
