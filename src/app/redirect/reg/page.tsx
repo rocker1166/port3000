@@ -33,7 +33,7 @@ const RedirectPage = () => {
           throw new Error('Failed to update user data');
         }
 
-        router.push('/dashboard');
+        router.push('/classroom');
       } catch (error) {
         console.error('Error fetching user ID or redirecting:', error);
       }
