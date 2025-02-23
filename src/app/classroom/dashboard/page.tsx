@@ -151,7 +151,7 @@ const studyMaterials = [
   {
     id: "7",
     title: "Smart Contracts with Solidity",
-    difficulty: "Intermediate",
+    difficulty: "Intermediate" as "Intermediate",
     icon: FileText,
     time: "15 min",
     views: 1800,
@@ -162,7 +162,7 @@ const studyMaterials = [
   {
     id: "8",
     title: "Blockchain Scaling Solutions",
-    difficulty: "Intermediate",
+    difficulty: "Intermediate" as "Intermediate",
     icon: Book,
     time: "12 min",
     views: 1300,
@@ -173,7 +173,7 @@ const studyMaterials = [
   {
     id: "9",
     title: "NFTs: A Beginner's Guide",
-    difficulty: "Beginner",
+    difficulty: "Beginner" as "Beginner",
     icon: FileText,
     time: "7 min",
     views: 1400,
