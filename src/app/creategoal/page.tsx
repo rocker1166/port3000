@@ -73,11 +73,13 @@ const RoadmapPage = () => {
      <LandingNavbar />
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-8 text-center">
+      <h1 className="text-4xl py-10 font-bold mb-8 text-center">
           Course Roadmap Generator
         </h1>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+
+          
           {/* Input Form Section */}
           <Card className="bg-gray-800 border-gray-700">
             <CardHeader>
@@ -140,7 +142,7 @@ const RoadmapPage = () => {
           </Card>
 
           {/* Roadmap Display Section */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 ">
             {showRoadmap ? (
               roadmapData && <RoadmapComponent syllabusData={roadmapData.modules} />
             ) : (

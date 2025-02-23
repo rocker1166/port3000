@@ -29,7 +29,7 @@ Example of the expected output format:
       "topicGroups": [
         {
           "groupTitle": "Quantum Mechanics Basics",
-          "groupId": "quantum-mechanics-basics",
+          "groupId": "quantum-mechanics-basicsvjvnis#76vs7",
           "topics": [
             { "topicTitle": "Schrodinger equation", "duration": "2 days" },
             { "topicTitle": "Particle in a box solutions", "duration": "3 days" }
@@ -37,7 +37,7 @@ Example of the expected output format:
         },
         {
           "groupTitle": "Molecular Orbitals",
-          "groupId": "molecular-orbitals",
+          "groupId": "molecular-orbitalssnviuseus$07b8s",
           "topics": [
             { "topicTitle": "Molecular orbitals of diatomic molecules", "duration": "2 days" },
             { "topicTitle": "Energy level diagrams of diatomic", "duration": "3 days" },

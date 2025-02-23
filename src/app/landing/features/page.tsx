@@ -1,5 +1,3 @@
-//src>app>landing>features>page.tsx
-
 "use client";
 
 import { FaBrain, FaBookOpen, FaLightbulb, FaClock } from "react-icons/fa";
@@ -44,7 +42,10 @@ export default function FeaturesPage() {
             particles: {
               number: {
                 value: 120,
-                density: { enable: true, value_area: 1000 },
+                density: { 
+                  enable: true, 
+                  
+                },
               },
               size: { value: 4 },
               move: { enable: true, speed: 1.5, direction: "none" },
@@ -53,8 +54,8 @@ export default function FeaturesPage() {
             },
             interactivity: {
               events: {
-                onhover: { enable: true, mode: "repulse" },
-                onclick: { enable: true, mode: "push" },
+                onHover: { enable: true, mode: "repulse" },
+                onClick: { enable: true, mode: "push" },
               },
             },
           }}

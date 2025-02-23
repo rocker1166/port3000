@@ -47,8 +47,8 @@ const RoadmapComponent: React.FC<RoadmapComponentProps> = ({ syllabusData }) => 
     setExpandedGroup(expandedGroup === groupId ? null : groupId);
   };
 
-  const navigateToDetail = (type: string, id: string) => {
-    router.push(`/learn/${type}/${id}`);
+  const navigateToDetail = (groupId: string) => {
+    router.push(`/classroom/${groupId}`);
   };
 
   return (
@@ -137,7 +137,7 @@ const RoadmapComponent: React.FC<RoadmapComponentProps> = ({ syllabusData }) => 
                                 className="text-blue-400 hover:text-blue-300 hover:bg-blue-900/20"
                                 onClick={(e) => {
                                   e.stopPropagation(); // Prevent collapsing when clicking "Learn More"
-                                  navigateToDetail('group', group.groupId);
+                                  navigateToDetail(group.groupId);
                                 }}
                               >
                                 Learn More
@@ -155,7 +155,6 @@ const RoadmapComponent: React.FC<RoadmapComponentProps> = ({ syllabusData }) => 
                                         <Badge variant="outline" className="text-gray-400">
                                           {topic.duration}
                                         </Badge>
-                                     
                                       </div>
                                     </div>
                                   </CardContent>
