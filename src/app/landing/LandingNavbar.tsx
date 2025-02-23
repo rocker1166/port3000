@@ -1,14 +1,14 @@
-//src>app>landing>LandingNavbar.tsx
-
 "use client";
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react"; // Import icons for the menu
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { useUser, RedirectToSignIn } from "@clerk/nextjs"; // Import useUser and RedirectToSignIn
 
 const LandingNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isSignedIn } = useUser(); // Check if user is signed in
 
   // Smooth scroll function
   const handleScroll = (
@@ -53,8 +53,10 @@ const LandingNavbar = () => {
             {item.replace("-", " ").toUpperCase()}
           </a>
         ))}
+
+        {/* Classroom Link - Show to everyone, but redirect to sign-in if not signed in */}
         <Link
-          href="/sign-in"
+          href={isSignedIn ? "/classroom" : "/sign-in"}
           className="text-white hover:text-blue-400 transition-all duration-300"
         >
           CLASSROOM
