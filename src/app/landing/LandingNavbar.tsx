@@ -3,7 +3,10 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
+import { Menu, X } from "lucide-react"; // Import icons for the menu
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+
 
 const LandingNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,22 +57,30 @@ const LandingNavbar = () => {
 
       {/* Login / Sign Up / Classroom Buttons */}
       <div className="hidden md:flex space-x-4 items-center">
-        <Link href="/login">
-          <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
-            LOGIN
-          </button>
-        </Link>
-        <Link href="/signup">
-          <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
-            SIGN UP
-          </button>
-        </Link>
-        {/* CLASSROOM Button */}
-        <Link href="/classroom">
-          <button className="bg-blue-600 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-700 transition duration-300">
-            CLASSROOM
-          </button>
-        </Link>
+
+        <SignedOut>
+        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+          <Link href="/sign-in">
+            <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
+              LOGIN
+            </button>
+          </Link>
+        </motion.div>
+        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+          <Link href="/reg-form">
+            <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
+              SIGN UP
+            </button>
+          </Link>
+        </motion.div>
+        </SignedOut>
+        <SignedIn>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.95 }}>
+          <UserButton  />
+          </motion.div>
+        </SignedIn>
+      
+
       </div>
 
       {/* Mobile Menu */}
@@ -85,22 +96,27 @@ const LandingNavbar = () => {
             </Link>
           ))}
 
-          <Link href="/login">
+
+          {/* Login / Sign Up - Mobile */}
+          <SignedOut>
+          <Link href="/sign-in">
+
             <button className="border bg-white border-blue-500 text-blue-500 px-5 py-2 rounded-full font-medium hover:bg-blue-400 hover:text-white transition duration-300">
               LOGIN
             </button>
           </Link>
-          <Link href="/signup">
+          <Link href="/reg-form">
             <button className="bg-blue-500 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-600 transition duration-300">
               SIGN UP
             </button>
           </Link>
 
-          <Link href="/classroom">
-            <button className="bg-blue-600 text-white px-5 py-2 rounded-full font-medium hover:bg-blue-700 transition duration-300">
-              CLASSROOM
-            </button>
-          </Link>
+          </SignedOut>
+          <SignedIn>
+          <UserButton  />
+          </SignedIn>
+            
+
         </div>
       )}
     </nav>
