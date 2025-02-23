@@ -2,15 +2,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Menu, X } from "lucide-react"; // Import icons for the menu
+import { Menu, X } from "lucide-react";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import { useUser, RedirectToSignIn } from "@clerk/nextjs"; // Import useUser and RedirectToSignIn
+import { useUser } from "@clerk/nextjs";
 
 const LandingNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isSignedIn } = useUser(); // Check if user is signed in
+  const { isSignedIn } = useUser();
 
-  // Smooth scroll function
   const handleScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     targetId: string
@@ -48,16 +47,16 @@ const LandingNavbar = () => {
             key={item}
             href={`#${item}`}
             onClick={(e) => handleScroll(e, item)}
-            className="text-white hover:text-blue-400 transition-all duration-300"
+            className="text-white hover:text-blue-400 transition-all duration-300 relative after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-blue-400 after:left-1/2 after:bottom-0 after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
           >
             {item.replace("-", " ").toUpperCase()}
           </a>
         ))}
 
-        {/* Classroom Link - Show to everyone, but redirect to sign-in if not signed in */}
+        {/* Classroom Link */}
         <Link
           href={isSignedIn ? "/classroom" : "/sign-in"}
-          className="text-white hover:text-blue-400 transition-all duration-300"
+          className="text-white hover:text-blue-400 transition-all duration-300 relative after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-blue-400 after:left-1/2 after:bottom-0 after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
         >
           CLASSROOM
         </Link>
@@ -95,7 +94,7 @@ const LandingNavbar = () => {
             <Link
               key={item}
               href={`#${item}`}
-              className="text-white text-lg font-medium hover:text-blue-400 transition-all duration-300"
+              className="text-white text-lg font-medium hover:text-blue-400 transition-all duration-300 relative after:content-[''] after:absolute after:w-0 after:h-[2px] after:bg-blue-400 after:left-1/2 after:bottom-0 after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
             >
               {item.replace("-", " ").toUpperCase()}
             </Link>

@@ -6,7 +6,12 @@ const Navbar = () => {
     <nav className="w-full fixed top-0 bg-black/60 backdrop-blur-md text-white py-4 px-8 flex justify-between items-center shadow-lg border-b border-gray-700">
       {/* Logo */}
       <div className="text-3xl font-bold text-blue-400 tracking-wide hover:text-blue-500 transition duration-300">
-        <Link href="/classroom">Classroom</Link>
+        <a
+          href="/"
+          className="text-3xl font-bold text-blue-400 tracking-wide hover:text-blue-500 transition duration-300"
+        >
+          StudyAI
+        </a>
       </div>
 
       {/* Navigation Links */}
@@ -15,14 +20,14 @@ const Navbar = () => {
           href="/classroom/study-materials"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-blue-400 transition-all duration-300"
+          className="hover:text-blue-400 transition-all duration-300 relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-blue-400 after:left-0 after:bottom-0 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
         >
           📚 Study Materials
         </a>
         <a
           href="/classroom/dashboard"
           rel="noopener noreferrer"
-          className="hover:text-blue-400 transition-all duration-300"
+          className="hover:text-blue-400 transition-all duration-300 relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-blue-400 after:left-0 after:bottom-0 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
         >
           📊 Dashboard
         </a>
@@ -30,18 +35,17 @@ const Navbar = () => {
           href="/classroom/quizzes"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-blue-400 transition-all duration-300"
+          className="hover:text-blue-400 transition-all duration-300 relative after:content-[''] after:absolute after:w-full after:h-[2px] after:bg-blue-400 after:left-0 after:bottom-0 after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100"
         >
           🎯 Quizzes
         </a>
-        <a
-          href="/classroom/ai-insights"
+        <Link
+          href="/classroom/pro-ana"
           target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-blue-400 transition-all duration-300"
+          className="flex items-center gap-3"
         >
-          🤖 AI Insights
-        </a>
+          📈 Progress & Analytics
+        </Link>
       </div>
     </nav>
   );
