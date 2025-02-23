@@ -1,3 +1,5 @@
+//src>app>classroom>dashboard>page.tsx
+
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
@@ -239,9 +241,14 @@ const StudyMaterialsPage = () => {
         }`}
       >
         <div className="flex justify-between items-center p-4 border-b border-gray-700">
-          <h1 className="text-xl font-bold">Dashboard</h1>
+          <h1 className="text-xl font-bold">
+            <input
+              type="text"
+              placeholder="Search"
+              className="w-48 pl-6 pr-4 py-2 bg-gray-800/50 backdrop-blur-sm rounded-xl text-white border border-gray-700/50 focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20"
+            />
+          </h1>
           <button onClick={() => setIsSidebarOpen(false)}>
-            <X size={24} />
           </button>
         </div>
         <ul className="p-4 space-y-4">
@@ -302,10 +309,16 @@ const StudyMaterialsPage = () => {
                   className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400"
                   size={24}
                 />
-                <input
-                  type="text"
-                  placeholder="Learning Duration"
-                  className="w-full pl-14 pr-4 py-4 bg-gray-800/50 backdrop-blur-sm rounded-xl text-white border border-gray-700/50 focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20"
+                <select className="w-full pl-14 pr-4 py-4 bg-gray-800/50 backdrop-blur-sm rounded-xl text-white border border-gray-700/50 focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 appearance-none">
+                  <option value="1-month">1 Month</option>
+                  <option value="3-months">3 Months</option>
+                  <option value="6-months">6 Months</option>
+                  <option value="1-year">1 Year</option>
+                  <option value="2-years">2 Years</option>
+                </select>
+                <ChevronRight
+                  className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 pointer-events-none"
+                  size={20}
                 />
               </div>
             </div>
