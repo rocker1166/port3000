@@ -21,7 +21,6 @@ const Navbar = () => {
         </a>
         <a
           href="/classroom/dashboard"
-          target="_blank"
           rel="noopener noreferrer"
           className="hover:text-blue-400 transition-all duration-300"
         >
