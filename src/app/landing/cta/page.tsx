@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function CTASection() {
   return (
     <section
-      id="cta"
+      id="get started"
       className="py-24 bg-gradient-to-r from-gray-800 to-black
  text-center text-white relative overflow-hidden"
     >
@@ -19,12 +19,12 @@ export default function CTASection() {
           by AI.
         </p>
         <div className="mt-10 flex justify-center space-x-6">
-          <Link href="/signup">
+          <Link href="/sign-in">
             <button className="px-8 py-4 bg-white text-blue-600 font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-110 hover:shadow-2xl">
               Get Started
             </button>
           </Link>
-          <Link href="/login">
+          <Link href="/reg-form">
             <button className="px-8 py-3.5 border-2 border-white text-white font-semibold rounded-lg transition-transform transform hover:bg-white hover:text-blue-600 hover:scale-110 hover:shadow-2xl">
               Log In
             </button>

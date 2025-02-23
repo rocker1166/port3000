@@ -43,7 +43,7 @@ const LandingNavbar = () => {
 
       {/* Desktop Navbar Links */}
       <div className="hidden md:flex space-x-8 text-lg font-medium">
-        {["features", "how-it-works", "faqs", "cta"].map((item) => (
+        {["features", "how-it-works", "faqs", "get started"].map((item) => (
           <a
             key={item}
             href={`#${item}`}
@@ -53,6 +53,12 @@ const LandingNavbar = () => {
             {item.replace("-", " ").toUpperCase()}
           </a>
         ))}
+        <Link
+          href="/sign-in"
+          className="text-white hover:text-blue-400 transition-all duration-300"
+        >
+          CLASSROOM
+        </Link>
       </div>
 
       {/* Login / Sign Up / Classroom Buttons */}

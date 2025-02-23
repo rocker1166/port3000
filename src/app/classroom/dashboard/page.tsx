@@ -1,8 +1,10 @@
-
+//src>app>classroom>dashboard>page.tsx
 
 "use client";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
+
 import {
   LayoutDashboard,
   Book,
@@ -51,7 +53,6 @@ const roadmapData = [
     ],
   },
 ];
-
 
 const studyMaterials = [
   {
@@ -150,7 +151,10 @@ const StudyMaterialCard = ({ material }: { material: StudyMaterial }) => {
             <Star className="text-yellow-400" size={16} />
             <span className="text-sm font-medium">{material.rating}</span>
           </div>
-          <button title="fh" className="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition-colors text-sm font-medium">
+          <button
+            title="fh"
+            className="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-lg hover:bg-blue-500/30 transition-colors text-sm font-medium"
+          >
             Start Learning
           </button>
         </div>
@@ -260,7 +264,6 @@ const StudyMaterialsPage = () => {
     });
   };
 
-
   const router = useRouter();
 
   return (
@@ -292,7 +295,13 @@ const StudyMaterialsPage = () => {
             <FileText /> Study Materials
           </li>
           <li className="flex items-center gap-3 cursor-pointer hover:bg-gray-700 p-2 rounded-md">
-            <BarChart /> Progress & Analytics
+            <Link
+              href="/classroom/pro-ana"
+              target="_blank"
+              className="flex items-center gap-3"
+            >
+              <BarChart /> Progress & Analytics
+            </Link>
           </li>
           <li className="flex items-center gap-3 cursor-pointer hover:bg-gray-700 p-2 rounded-md">
             <Zap /> Quizzes & Challenges
@@ -340,8 +349,13 @@ const StudyMaterialsPage = () => {
                   className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-400"
                   size={24}
                 />
-                <label htmlFor="duration-select" className="sr-only">Select Duration</label>
-                <select id="duration-select" className="w-full pl-14 pr-4 py-4 bg-gray-800/50 backdrop-blur-sm rounded-xl text-white border border-gray-700/50 focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 appearance-none">
+                <label htmlFor="duration-select" className="sr-only">
+                  Select Duration
+                </label>
+                <select
+                  id="duration-select"
+                  className="w-full pl-14 pr-4 py-4 bg-gray-800/50 backdrop-blur-sm rounded-xl text-white border border-gray-700/50 focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 appearance-none"
+                >
                   <option value="1-month">1 Month</option>
                   <option value="3-months">3 Months</option>
                   <option value="6-months">6 Months</option>
@@ -354,7 +368,10 @@ const StudyMaterialsPage = () => {
                 />
               </div>
             </div>
-            <button onClick={() => router.push('/creategoal') }  className="px-8 py-4 bg-blue-500 hover:bg-blue-600 rounded-xl font-semibold flex items-center justify-center space-x-3 transition-colors shadow-lg shadow-blue-500/20">
+            <button
+              onClick={() => router.push("/creategoal")}
+              className="px-8 py-4 bg-blue-500 hover:bg-blue-600 rounded-xl font-semibold flex items-center justify-center space-x-3 transition-colors shadow-lg shadow-blue-500/20"
+            >
               <span>Generate Learning Path</span>
               <ArrowRight size={20} />
             </button>
@@ -368,7 +385,10 @@ const StudyMaterialsPage = () => {
             <div className="bg-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
               <div className="flex items-center justify-between mb-8">
                 <h2 className="text-xl font-bold">Learning Roadmap</h2>
-                <button className="p-2 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors" title="Bookmark">
+                <button
+                  className="p-2 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors"
+                  title="Bookmark"
+                >
                   <BookmarkPlus size={20} className="text-gray-300" />
                 </button>
               </div>
@@ -391,11 +411,19 @@ const StudyMaterialsPage = () => {
               <div className="flex justify-between items-center mb-8">
                 <h2 className="text-xl font-bold">Recommended Materials</h2>
                 <div className="flex items-center space-x-4">
-                  <button className="p-2 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors" title="Filter">
+                  <button
+                    className="p-2 bg-gray-700/50 rounded-lg hover:bg-gray-700 transition-colors"
+                    title="Filter"
+                  >
                     <Filter size={20} className="text-gray-300" />
                   </button>
-                  <label htmlFor="sort-select" className="sr-only">Sort Options</label>
-                  <select id="sort-select" className="bg-gray-700/50 rounded-lg px-4 py-2 text-sm border border-gray-600">
+                  <label htmlFor="sort-select" className="sr-only">
+                    Sort Options
+                  </label>
+                  <select
+                    id="sort-select"
+                    className="bg-gray-700/50 rounded-lg px-4 py-2 text-sm border border-gray-600"
+                  >
                     <option>Sort: Recommended</option>
                     <option>Most Popular</option>
                     <option>Newest First</option>
