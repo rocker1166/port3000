@@ -46,6 +46,7 @@ import Navbar from "@/app/components/Navbar";
 import LeftSidebar from "@/components/studyzone/Leftsidebar";
 import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { AIChatbotSheet } from "@/app/components/chat/Chatbutton";
+import Note from "@/components/MakeNOte";
 
 // --- Components ---
 
@@ -332,6 +333,7 @@ export default function StudyZone() {
           <TabsTrigger value="lesson" className="text-zinc-300 flex-1 text-center py-2">Lesson</TabsTrigger>
           <TabsTrigger value="practice" className="text-zinc-300 flex-1 text-center py-2">Practice</TabsTrigger>
           <TabsTrigger value="resources" className="text-zinc-300 flex-1 text-center py-2">Resources</TabsTrigger>
+          <TabsTrigger value="notes" className="text-zinc-300 flex-1 text-center py-2">Notes</TabsTrigger>
         </TabsList>
         <div className="mt-4">
           <TabsContent value="lesson">
@@ -342,6 +344,9 @@ export default function StudyZone() {
           </TabsContent>
           <TabsContent value="resources">
             <ResourcesTabContent />
+          </TabsContent>
+          <TabsContent value="notes">
+            <Note />
           </TabsContent>
         </div>
       </Tabs>
