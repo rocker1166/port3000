@@ -79,7 +79,18 @@ const RoadmapConnection = () => (
   <div className="absolute left-6 w-px h-full bg-gray-600 -z-10" />
 );
 
-const StudyMaterialCard = ({ material }) => {
+interface StudyMaterial {
+  id: string;
+  title: string;
+  difficulty: "Beginner" | "Intermediate" | "Advanced";
+  icon: React.ElementType;
+  time: string;
+  views: number;
+  progress: number;
+  rating: string;
+}
+
+const StudyMaterialCard = ({ material }: { material: StudyMaterial }) => {
   const difficultyColors = {
     Beginner: "bg-green-500/20 text-green-400",
     Intermediate: "bg-yellow-500/20 text-yellow-400",
@@ -147,7 +158,23 @@ const StudyMaterialCard = ({ material }) => {
   );
 };
 
-const RoadmapNode = ({ node, expanded, onToggle }) => {
+interface RoadmapNodeProps {
+  node: {
+    id: string;
+    title: string;
+    description: string;
+    completed: boolean;
+    subModules: { id: string; title: string; completed: boolean }[];
+  };
+  expanded: boolean;
+  onToggle: (id: string) => void;
+}
+
+const RoadmapNode: React.FC<RoadmapNodeProps> = ({
+  node,
+  expanded,
+  onToggle,
+}) => {
   return (
     <div className="relative mb-6">
       <RoadmapConnection />
@@ -218,9 +245,9 @@ const StudyMaterialsPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // State management for expanded roadmap nodes
-  const [expandedNodes, setExpandedNodes] = useState(new Set());
+  const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
 
-  const toggleNode = (id) => {
+  const toggleNode = (id: string) => {
     setExpandedNodes((prev) => {
       const newExpandedNodes = new Set(prev);
       if (newExpandedNodes.has(id)) {
@@ -248,8 +275,7 @@ const StudyMaterialsPage = () => {
               className="w-48 pl-6 pr-4 py-2 bg-gray-800/50 backdrop-blur-sm rounded-xl text-white border border-gray-700/50 focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20"
             />
           </h1>
-          <button onClick={() => setIsSidebarOpen(false)}>
-          </button>
+          <button onClick={() => setIsSidebarOpen(false)}></button>
         </div>
         <ul className="p-4 space-y-4">
           <li className="flex items-center gap-3 cursor-pointer hover:bg-gray-700 p-2 rounded-md">
@@ -369,7 +395,6 @@ const StudyMaterialsPage = () => {
                   </select>
                 </div>
               </div>
-
               <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                 {studyMaterials.map((material) => (
                   <StudyMaterialCard key={material.id} material={material} />
