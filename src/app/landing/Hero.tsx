@@ -96,7 +96,7 @@ const Hero = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <Link href="/signup">
+          <Link href="/creategoal">
             <button className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition duration-300">
               Get Started
             </button>
