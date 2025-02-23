@@ -26,21 +26,8 @@ const Hero = () => {
             shape: { type: "star" },
             opacity: { value: 0.8, random: true, animation: { enable: true, speed: 0.5, minimumValue: 0.2, sync: false } },
             size: { value: 4, random: true },
-            move: {
-              enable: true,
-              speed: 2,
-              direction: "none",
-              random: false,
-              straight: false,
-              outModes: { default: "out" },
-            },
-            links: {
-              enable: true,
-              color: "#ffffff",
-              distance: 200,
-              opacity: 0.4,
-              width: 1.5,
-            },
+            move: { enable: true, speed: 2, direction: "none", random: false, straight: false, outModes: { default: "out" } },
+            links: { enable: true, color: "#ffffff", distance: 200, opacity: 0.4, width: 1.5 },
           },
           interactivity: {
             events: {
@@ -109,21 +96,45 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Right Side - Image */}
+      {/* Right Side - Image with Effects */}
       <motion.div
-        className="relative z-10 mt-12 md:mt-0"
+        className="relative z-10 mt-12 md:mt-0 max-w-[500px] flex justify-center items-center"
         initial={{ opacity: 0, x: 50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
       >
-        <Image
-          src="/Hero.jpeg"
-          alt="Study AI"
-          width={500}
-          height={500}
-          priority
-          className="drop-shadow-lg rounded-lg ring-4 ring-cyan-400"
+        {/* Blurred Glow Effect */}
+        <motion.div
+          className="absolute -z-10 w-[90%] h-[90%] bg-cyan-400 blur-[70px] opacity-40"
+          animate={{
+            scale: [1, 1.1, 1],
+            opacity: [0.3, 0.5, 0.3],
+          }}
+          transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
         />
+
+        <motion.div
+          className="relative"
+          animate={{
+            y: [0, -8, 0],
+            boxShadow: [
+              "0 0 15px rgba(0, 255, 255, 0.3), 0 0 30px rgba(255, 0, 255, 0.3)",
+              "0 0 25px rgba(0, 255, 255, 0.5), 0 0 35px rgba(255, 0, 255, 0.5)",
+              "0 0 15px rgba(0, 255, 255, 0.3), 0 0 30px rgba(255, 0, 255, 0.3)",
+            ],
+          }}
+          transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+          whileHover={{ rotateY: 8, rotateX: 8, scale: 1.05 }}
+        >
+          <Image
+            src="/Hero.jpeg"
+            alt="Study AI"
+            width={500} // Reduced size
+            height={500}
+            priority
+            className="drop-shadow-lg rounded-lg ring-4 ring-cyan-400 hover:rotate-2 transition-transform duration-300"
+          />
+        </motion.div>
       </motion.div>
     </section>
   );
