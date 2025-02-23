@@ -4,6 +4,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Footer from "../../landing/footer/page"; // ✅ Correct import
 
 import {
   LayoutDashboard,
@@ -52,6 +53,38 @@ const roadmapData = [
       { id: "2.2", title: "DApps", completed: false },
     ],
   },
+  {
+    id: "3",
+    title: "Blockchain in Cryptocurrency",
+    description:
+      "Explore how Blockchain supports cryptocurrencies like Bitcoin and Ethereum.",
+    completed: false,
+    subModules: [
+      { id: "3.1", title: "Bitcoin Overview", completed: false },
+      { id: "3.2", title: "Ethereum and Smart Contracts", completed: false },
+    ],
+  },
+  {
+    id: "4",
+    title: "Blockchain for Business Solutions",
+    description:
+      "Understand how businesses use Blockchain for supply chain management, finance, and more.",
+    completed: false,
+    subModules: [
+      { id: "4.1", title: "Blockchain in Supply Chain", completed: false },
+      { id: "4.2", title: "Blockchain in Finance", completed: false },
+    ],
+  },
+  {
+    id: "5",
+    title: "Blockchain Security and Privacy",
+    description: "Learn the security features of Blockchain and how it ensures privacy.",
+    completed: false,
+    subModules: [
+      { id: "5.1", title: "Blockchain Security Basics", completed: false },
+      { id: "5.2", title: "Cryptographic Hash Functions", completed: false },
+    ],
+  },
 ];
 
 const studyMaterials = [
@@ -74,6 +107,78 @@ const studyMaterials = [
     views: 1500,
     progress: 45,
     rating: "4.7/5",
+  },
+  {
+    id: "3",
+    title: "Blockchain Basics",
+    difficulty: "Beginner" as "Beginner",
+    icon: Book,
+    time: "5 min",
+    views: 1200,
+    progress: 60,
+    rating: "4.5/5",
+  },
+  {
+    id: "4",
+    title: "Intro to Decentralized Apps (DApps)",
+    difficulty: "Intermediate" as "Intermediate",
+    icon: Book,
+    time: "8 min",
+    views: 900,
+    progress: 70,
+    rating: "4.6/5",
+  },
+  {
+    id: "5",
+    title: "Cryptography in BLOCKCHAIN",
+    difficulty: "Advanced" as "Advanced",
+    icon: FileText,
+    time: "12 min",
+    views: 500,
+    progress: 35,
+    rating: "4.8/5",
+  },
+  {
+    id: "6",
+    title: "Blockchain for Business",
+    difficulty: "Beginner" as "Beginner",
+    icon: Book,
+    time: "6 min",
+    views: 1100,
+    progress: 50,
+    rating: "4.4/5",
+  },
+  {
+    id: "7",
+    title: "Smart Contracts with Solidity",
+    difficulty: "Intermediate",
+    icon: FileText,
+    time: "15 min",
+    views: 1800,
+    progress: 65,
+    rating: "4.7/5",
+  },
+
+  {
+    id: "8",
+    title: "Blockchain Scaling Solutions",
+    difficulty: "Intermediate",
+    icon: Book,
+    time: "12 min",
+    views: 1300,
+    progress: 40,
+    rating: "4.3/5",
+  },
+
+  {
+    id: "9",
+    title: "NFTs: A Beginner's Guide",
+    difficulty: "Beginner",
+    icon: FileText,
+    time: "7 min",
+    views: 1400,
+    progress: 40,
+    rating: "4.5/5",
   },
 ];
 
@@ -275,15 +380,18 @@ const StudyMaterialsPage = () => {
         }`}
       >
         <div className="flex justify-between items-center p-4 border-b border-gray-700">
-          <h1 className="text-xl font-bold">
-            <input
-              type="text"
-              placeholder="Search"
-              className="w-48 pl-6 pr-4 py-2 bg-gray-800/50 backdrop-blur-sm rounded-xl text-white border border-gray-700/50 focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20"
-            />
+          <h1 className="text-xl font-bold flex-1">
+            <div className="flex justify-center items-center p-4 border-b border-gray-700">
+              <input
+                type="text"
+                placeholder="Search"
+                className="w-36 pl-6 pr-4 py-2 bg-gray-800/50 backdrop-blur-sm rounded-xl text-white border border-gray-700/50 focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20"
+              />
+            </div>
           </h1>
           <button title="nf" onClick={() => setIsSidebarOpen(false)}></button>
         </div>
+
         <ul className="p-4 space-y-4">
           <li className="flex items-center gap-3 cursor-pointer hover:bg-gray-700 p-2 rounded-md">
             <LayoutDashboard /> Dashboard
@@ -308,7 +416,6 @@ const StudyMaterialsPage = () => {
           </li>
         </ul>
       </div>
-
       {/* Hamburger Menu Button */}
       <div className="absolute top-4 left-1 z-50">
         <button
@@ -319,7 +426,6 @@ const StudyMaterialsPage = () => {
           <Menu size={24} />
         </button>
       </div>
-
       {/* Main Content */}
       <div
         className={`max-w-[1800px] mx-auto px-8 py-6 transition-all duration-300 ${
@@ -439,6 +545,7 @@ const StudyMaterialsPage = () => {
           </div>
         </div>
       </div>
+      <Footer /> {/* ✅ Footer added */}
     </div>
   );
 };
