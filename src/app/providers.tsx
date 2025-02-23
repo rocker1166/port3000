@@ -4,14 +4,37 @@ import { type Dispatch, type ReactNode, type SetStateAction, createContext, useE
 import { ThemeProvider, useTheme } from "next-themes";
 import { Toaster } from "sonner";
 import { Analytics } from "@vercel/analytics/react";
-import useLocalStorage from "@/hooks/use-local-storage";
+
+function useLocalStorage<T>(key: string, initialValue: T): [T, Dispatch<SetStateAction<T>>] {
+  const [storedValue, setStoredValue] = useState<T>(() => {
+    try {
+      const item = window.localStorage.getItem(key);
+      return item ? JSON.parse(item) : initialValue;
+    } catch (error) {
+      console.log(error);
+      return initialValue;
+    }
+  });
+
+  const setValue: Dispatch<SetStateAction<T>> = (value) => {
+    try {
+      const valueToStore = value instanceof Function ? value(storedValue) : value;
+      setStoredValue(valueToStore);
+      window.localStorage.setItem(key, JSON.stringify(valueToStore));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return [storedValue, setValue];
+}
 
 export const AppContext = createContext<{
   font: string;
   setFont: Dispatch<SetStateAction<string>>;
 }>({
   font: "Default",
-  setFont: () => "",
+  setFont: () => {},
 });
 
 const ToasterProvider = () => {

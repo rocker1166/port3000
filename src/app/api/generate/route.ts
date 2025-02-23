@@ -1,6 +1,6 @@
 import { openai } from "@ai-sdk/openai";
 import { Ratelimit } from "@upstash/ratelimit";
-import { kv } from "@vercel/kv";
+import { Redis } from "@upstash/redis";
 import { streamText } from "ai";
 import { match } from "ts-pattern";
 
@@ -17,7 +17,10 @@ export async function POST(req: Request): Promise<Response> {
   if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
     const ip = req.headers.get("x-forwarded-for");
     const ratelimit = new Ratelimit({
-      redis: kv,
+      redis: new Redis({
+        url: process.env.UPSTASH_REDIS_REST_URL,
+        token: process.env.UPSTASH_REDIS_REST_TOKEN,
+      }),
       limiter: Ratelimit.slidingWindow(50, "1 d"),
     });
 

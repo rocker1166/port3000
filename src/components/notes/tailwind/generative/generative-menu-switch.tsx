@@ -1,29 +1,34 @@
-import { EditorBubble, removeAIHighlight, useEditor } from "novel";
+import { EditorBubble, removeAIHighlight, useEditor, EditorInstance } from "novel"; // Import EditorInstance type from 'novel'
 import { Fragment, type ReactNode, useEffect } from "react";
 import { Button } from "../ui/button";
 import Magic from "../ui/icons/magic";
 import { AISelector } from "./ai-selector";
+import { Placement } from "tippy.js";
 
 interface GenerativeMenuSwitchProps {
   children: ReactNode;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
-const GenerativeMenuSwitch = ({ children, open, onOpenChange }: GenerativeMenuSwitchProps) => {
-  const { editor } = useEditor();
+
+const GenerativeMenuSwitch: React.FC<GenerativeMenuSwitchProps> = ({ children, open, onOpenChange }: GenerativeMenuSwitchProps) => {
+  const { editor } = useEditor() as { editor: EditorInstance }; // Type assertion for useEditor
 
   useEffect(() => {
-    if (!open) removeAIHighlight(editor);
-  }, [open]);
+    if (!open && editor) removeAIHighlight(editor); // Add check for editor before calling removeAIHighlight
+  }, [open, editor]); // Add editor to the dependency array
+
+  const tippyOptions = { // Explicitly type tippyOptions
+    placement: open ? ("bottom-start" as Placement) : ("top" as Placement),
+    onHidden: () => {
+      onOpenChange(false);
+      editor?.chain().unsetHighlight().focus().run(); // Use optional chaining and check for editor existence
+    },
+  };
+
   return (
     <EditorBubble
-      tippyOptions={{
-        placement: open ? "bottom-start" : "top",
-        onHidden: () => {
-          onOpenChange(false);
-          editor.chain().unsetHighlight().run();
-        },
-      }}
+      tippyOptions={tippyOptions}
       className="flex w-fit max-w-[90vw] overflow-hidden rounded-md border border-muted bg-background shadow-xl"
     >
       {open && <AISelector open={open} onOpenChange={onOpenChange} />}

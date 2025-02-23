@@ -1,8 +1,15 @@
 import { ArrowDownWideNarrow, CheckCheck, RefreshCcwDot, StepForward, WrapText } from "lucide-react";
-import { getPrevText, useEditor } from "novel";
+import { getPrevText, useEditor, EditorInstance } from "novel"; // Import EditorInstance type from 'novel'
 import { CommandGroup, CommandItem, CommandSeparator } from "../ui/command";
+import React from 'react'; // Import React
 
-const options = [
+interface Option {
+  value: string;
+  label: string;
+  icon: React.ElementType; // Type for icon as React component
+}
+
+const options: Option[] = [ // Explicitly type options array
   {
     value: "improve",
     label: "Improve writing",
@@ -26,21 +33,26 @@ const options = [
 ];
 
 interface AISelectorCommandsProps {
-  onSelect: (value: string, option: string) => void;
+  onSelect: (value: string, option: string) => void; // Type for onSelect function prop
 }
 
-const AISelectorCommands = ({ onSelect }: AISelectorCommandsProps) => {
-  const { editor } = useEditor();
+const AISelectorCommands: React.FC<AISelectorCommandsProps> = ({ onSelect }) => {
+  const { editor } = useEditor() as { editor: EditorInstance }; // Type assertion for useEditor, or get proper EditorInstance type
+
+  if (!editor) {
+    return null; // Handle case where editor might be null
+  }
 
   return (
     <>
       <CommandGroup heading="Edit or review selection">
         {options.map((option) => (
           <CommandItem
-            onSelect={(value) => {
+            onSelect={(value) => { // Value here is CommandItem value, not option value
+              if (!editor) return; // Add null check for editor here as well
               const slice = editor.state.selection.content();
               const text = editor.storage.markdown.serializer.serialize(slice.content);
-              onSelect(text, value);
+              onSelect(text, option.value); // Use option.value here to pass correct option value
             }}
             className="flex gap-2 px-4"
             key={option.value}
@@ -55,6 +67,7 @@ const AISelectorCommands = ({ onSelect }: AISelectorCommandsProps) => {
       <CommandGroup heading="Use AI to do more">
         <CommandItem
           onSelect={() => {
+            if (!editor) return; // Add null check for editor
             const pos = editor.state.selection.from;
             const text = getPrevText(editor, pos);
             onSelect(text, "continue");

@@ -1,15 +1,24 @@
 import { CommandGroup, CommandItem, CommandSeparator } from "../ui/command";
 import { useEditor } from "novel";
 import { Check, TextQuote, TrashIcon } from "lucide-react";
+import { EditorInstance } from 'novel'; // Import EditorInstance type from 'novel'
 
-const AICompletionCommands = ({
-  completion,
-  onDiscard,
-}: {
+interface AICompletionCommandsProps {
   completion: string;
   onDiscard: () => void;
+}
+
+const AICompletionCommands: React.FC<AICompletionCommandsProps> = ({
+  completion,
+  onDiscard,
 }) => {
-  const { editor } = useEditor();
+  // Use type assertion if `useEditor` type is not explicitly available or incorrect
+  const { editor } = useEditor() as { editor: EditorInstance }; // Or get the correct type from novel's documentation
+
+  if (!editor) {
+    return null; // Or handle the case where editor is not available
+  }
+
   return (
     <>
       <CommandGroup>

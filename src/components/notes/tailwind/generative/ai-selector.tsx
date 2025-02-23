@@ -1,10 +1,9 @@
 "use client";
 
 import { Command, CommandInput } from "../ui/command";
-
 import { useCompletion } from "ai/react";
 import { ArrowUp } from "lucide-react";
-import { useEditor } from "novel";
+import { useEditor, EditorInstance } from "novel"; // Import EditorInstance type
 import { addAIHighlight } from "novel";
 import { useState } from "react";
 import Markdown from "react-markdown";
@@ -15,7 +14,6 @@ import Magic from "../ui/icons/magic";
 import { ScrollArea } from "../ui/scroll-area";
 import AICompletionCommands from "./ai-completion-command";
 import AISelectorCommands from "./ai-selector-commands";
-//TODO: I think it makes more sense to create a custom Tiptap extension for this functionality https://tiptap.dev/docs/editor/ai/introduction
 
 interface AISelectorProps {
   open: boolean;
@@ -23,11 +21,12 @@ interface AISelectorProps {
 }
 
 export function AISelector({ onOpenChange }: AISelectorProps) {
-  const { editor } = useEditor();
-  const [inputValue, setInputValue] = useState("");
+  const { editor } = useEditor() as { editor: EditorInstance }; // Type assertion for useEditor
 
+  const [inputValue, setInputValue] = useState<string>(""); // Explicitly type inputValue as string
+
+  // Correctly type the useCompletion hook
   const { completion, complete, isLoading } = useCompletion({
-    // id: "novel",
     api: "/api/generate",
     onResponse: (response) => {
       if (response.status === 429) {
@@ -36,11 +35,15 @@ export function AISelector({ onOpenChange }: AISelectorProps) {
       }
     },
     onError: (e) => {
-      toast.error(e.message);
+      if (e instanceof Error) { // Check if e is an instance of Error
+        toast.error(e.message);
+      } else {
+        toast.error("An unexpected error occurred."); // Fallback error message
+      }
     },
   });
 
-  const hasCompletion = completion.length > 0;
+  const hasCompletion = completion && completion.length > 0; // Check if completion is not null or undefined
 
   return (
     <Command className="w-[350px]">
@@ -71,23 +74,26 @@ export function AISelector({ onOpenChange }: AISelectorProps) {
               onValueChange={setInputValue}
               autoFocus
               placeholder={hasCompletion ? "Tell AI what to do next" : "Ask AI to edit or generate..."}
-              onFocus={() => addAIHighlight(editor)}
+              onFocus={() => editor && addAIHighlight(editor)} // Add check if editor exists
             />
             <Button
               size="icon"
               className="absolute right-2 top-1/2 h-6 w-6 -translate-y-1/2 rounded-full bg-purple-500 hover:bg-purple-900"
               onClick={() => {
-                if (completion)
-                  return complete(completion, {
+                if (!editor) return; // Add null check for editor
+
+                if (completion) {
+                  complete(completion, {
                     body: { option: "zap", command: inputValue },
                   }).then(() => setInputValue(""));
+                } else {
+                  const slice = editor.state.selection.content();
+                  const text = editor.storage.markdown.serializer.serialize(slice.content);
 
-                const slice = editor.state.selection.content();
-                const text = editor.storage.markdown.serializer.serialize(slice.content);
-
-                complete(text, {
-                  body: { option: "zap", command: inputValue },
-                }).then(() => setInputValue(""));
+                  complete(text, {
+                    body: { option: "zap", command: inputValue },
+                  }).then(() => setInputValue(""));
+                }
               }}
             >
               <ArrowUp className="h-4 w-4" />
@@ -96,7 +102,7 @@ export function AISelector({ onOpenChange }: AISelectorProps) {
           {hasCompletion ? (
             <AICompletionCommands
               onDiscard={() => {
-                editor.chain().unsetHighlight().focus().run();
+                editor?.chain().unsetHighlight().focus().run(); // Use optional chaining
                 onOpenChange(false);
               }}
               completion={completion}

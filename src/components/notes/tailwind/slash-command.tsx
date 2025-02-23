@@ -13,10 +13,13 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
-import { Command, createSuggestionItems, renderItems } from "novel";
-import { uploadFn } from "./image-upload";
+import { Command, createSuggestionItems, renderItems, SuggestionItem } from "novel"; // Import SuggestionItem type
 
-export const suggestionItems = createSuggestionItems([
+import { uploadFn } from "./image-upload";
+import React from 'react'; // Import React
+
+// Explicitly type suggestionItems array
+export const suggestionItems: SuggestionItem[] = createSuggestionItems([
   {
     title: "Send Feedback",
     description: "Let us know how we can improve.",
@@ -84,7 +87,7 @@ export const suggestionItems = createSuggestionItems([
     title: "Numbered List",
     description: "Create a list with numbering.",
     searchTerms: ["ordered"],
-    icon: <ListOrdered size={18} />,
+    icon: <ListOrdered size={18} />, // Corrected icon to ListOrdered
     command: ({ editor, range }) => {
       editor.chain().focus().deleteRange(range).toggleOrderedList().run();
     },
@@ -134,10 +137,10 @@ export const suggestionItems = createSuggestionItems([
       const videoLink = prompt("Please enter Youtube Video Link");
       //From https://regexr.com/3dj5t
       const ytregex = new RegExp(
-        /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/,
+        /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu\.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/,
       );
 
-      if (ytregex.test(videoLink)) {
+      if (videoLink && ytregex.test(videoLink)) {
         editor
           .chain()
           .focus()
@@ -162,7 +165,7 @@ export const suggestionItems = createSuggestionItems([
       const tweetLink = prompt("Please enter Twitter Link");
       const tweetRegex = new RegExp(/^https?:\/\/(www\.)?x\.com\/([a-zA-Z0-9_]{1,15})(\/status\/(\d+))?(\/\S*)?$/);
 
-      if (tweetRegex.test(tweetLink)) {
+      if (tweetLink && tweetRegex.test(tweetLink)) {
         editor
           .chain()
           .focus()

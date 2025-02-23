@@ -11,17 +11,17 @@ import {
   TextIcon,
   TextQuote,
 } from "lucide-react";
-import { EditorBubbleItem, useEditor } from "novel";
+import { EditorBubbleItem, useEditor, EditorInstance } from "novel"; // Import EditorInstance type from 'novel'
 
 import { Button } from "@/components/ui/button";
-import { PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Popover } from "@radix-ui/react-popover";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import React from 'react'; // Import React
 
 export type SelectorItem = {
   name: string;
   icon: LucideIcon;
-  command: (editor: ReturnType<typeof useEditor>["editor"]) => void;
-  isActive: (editor: ReturnType<typeof useEditor>["editor"]) => boolean;
+  command: (editor: EditorInstance) => void; // Use imported EditorInstance type
+  isActive: (editor: EditorInstance) => boolean; // Use imported EditorInstance type
 };
 
 const items: SelectorItem[] = [
@@ -87,11 +87,16 @@ interface NodeSelectorProps {
   onOpenChange: (open: boolean) => void;
 }
 
-export const NodeSelector = ({ open, onOpenChange }: NodeSelectorProps) => {
-  const { editor } = useEditor();
-  if (!editor) return null;
-  const activeItem = items.filter((item) => item.isActive(editor)).pop() ?? {
+export const NodeSelector: React.FC<NodeSelectorProps> = ({ open, onOpenChange }: NodeSelectorProps) => { // Type NodeSelector as React.FC
+  const { editor } = useEditor() as { editor: EditorInstance }; // Type assertion for useEditor
+
+  if (!editor) return null; // Null check for editor
+
+  const activeItem: SelectorItem = items.filter((item) => item.isActive(editor)).pop() ?? { // Type activeItem
     name: "Multiple",
+    icon: TextIcon, // Fallback icon, you might want to choose a more appropriate one
+    command: () => {}, // No-op command as fallback
+    isActive: () => false, // Always inactive as fallback
   };
 
   return (
@@ -106,8 +111,8 @@ export const NodeSelector = ({ open, onOpenChange }: NodeSelectorProps) => {
         {items.map((item) => (
           <EditorBubbleItem
             key={item.name}
-            onSelect={(editor) => {
-              item.command(editor);
+            onSelect={() => { // Removed editor argument from onSelect
+              item.command(editor); // Editor is already in scope
               onOpenChange(false);
             }}
             className="flex cursor-pointer items-center justify-between rounded-sm px-2 py-1 text-sm hover:bg-accent"

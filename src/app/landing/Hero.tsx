@@ -16,16 +16,16 @@ const Hero = () => {
       {/* Particles Background */}
       <Particles
         id="tsparticles"
-        init={particlesInit}
+       
         options={{
           fullScreen: { enable: false },
           background: { color: "transparent" },
           particles: {
-            number: { value: 150, density: { enable: true, value_area: 1000 } },
+            number: { value: 150, density: { enable: true,  } },
             color: { value: ["#00FFFF", "#FF00FF", "#FFA500"] },
             shape: { type: "star" },
-            opacity: { value: 0.8, random: true, animation: { enable: true, speed: 0.5, minimumValue: 0.2, sync: false } },
-            size: { value: 4, random: true },
+            opacity: { value: 0.8, animation: { enable: true, speed: 0.5,  sync: false } },
+            size: { value: 4 },
             move: {
               enable: true,
               speed: 2,
