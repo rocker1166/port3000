@@ -18,7 +18,6 @@ const useLocalStorage = <T>(
   const setValue = (value: T) => {
     // Save state
     setStoredValue(value);
-    // Save to localStorage
     window.localStorage.setItem(key, JSON.stringify(value));
   };
   return [storedValue, setValue];

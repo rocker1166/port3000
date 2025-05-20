@@ -88,7 +88,7 @@ export function ChatbotUI({ initialMessage = "Hello! How can I assist you today?
   }
 
   return (
-    <Card className="w-full h-full flex flex-col  bg-blue-950 text-primary">
+    <Card className="w-full h-full flex flex-col  bg-blue-950 text-white">
       <CardHeader className="px-4 py-3 sm:px-6 sm:py-4 border-b flex justify-between items-center">
         <h2 className="text-xl sm:text-2xl font-bold text-white">AI Chatbot</h2>
         <Button onClick={handleClearChat} variant="outline" size="sm" className="text-xs sm:text-sm">
@@ -129,7 +129,7 @@ export function ChatbotUI({ initialMessage = "Hello! How can I assist you today?
           ))}
           {isLoading && (
             <div className="flex justify-center items-center py-2 sm:py-4">
-              <Loader2Icon className="h-4 w-4 sm:h-6 sm:w-6 animate-spin text-primary" />
+              <Loader2Icon className="h-4 w-4 sm:h-6 sm:w-6 animate-spin text-white" />
             </div>
           )}
         </ScrollArea>
@@ -141,12 +141,12 @@ export function ChatbotUI({ initialMessage = "Hello! How can I assist you today?
             value={input}
             onChange={handleInputChange}
             placeholder="Type your message here..."
-            className="flex-grow text-xs sm:text-sm md:text-base"
+            className="flex-grow text-xs sm:text-sm md:text-base text-white"
             disabled={isLoading}
             aria-label="Chat input"
           />
           <Button type="submit" size="icon" className="shrink-0" disabled={isLoading}>
-            <SendIcon className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
+            <SendIcon className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 =" />
             <span className="sr-only">Send message</span>
           </Button>
         </form>
